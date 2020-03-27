@@ -8,10 +8,10 @@ class Login extends Component {
         this.state = {};
     }
     render() {
-        return ( <
-            Fragment >
-            登录页面 <
-            /Fragment>
+        return (
+            <Fragment >
+                登录页面
+            </Fragment>
         );
     }
 }
