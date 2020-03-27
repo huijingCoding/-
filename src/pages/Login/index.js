@@ -1,14 +1,17 @@
-import React, { Fragment,Component} from 'react'
+import React, {
+    Fragment,
+    Component
+} from 'react'
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = {};
     }
     render() {
-        return (
-            <Fragment>
-                登录页
-            </Fragment>
+        return ( <
+            Fragment >
+            登录页面 <
+            /Fragment>
         );
     }
 }
