@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, } from 'react-router-dom'
 import Login from './pages/Login/index'
 import Admin from './pages/Admin/index'
+import Manage from './pages/manage/index'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ class App extends Component {
           return (
             <Admin>
                {/* 路由器 */}
-              
+               <Route path='/admin/manage' component={Manage}></Route>
             </Admin>
           )
         }}></Route>
