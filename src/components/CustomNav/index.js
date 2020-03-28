@@ -1,7 +1,7 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import { Menu } from 'antd';
 import {withRouter} from 'react-router-dom'
-import { AppstoreOutlined, MailOutlined, SettingOutlined,BankOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, UserOutlined, ShoppingCartOutlined,BankOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 function handleClick (e) {
@@ -38,13 +38,13 @@ class CustomNav extends Component {
             onClick={handleClick.bind(this)}
             >
                 
-                <Menu.Item key="1" path='/admin/manage'><BankOutlined/><span>首页</span></Menu.Item>
+                <Menu.Item key="0" path='/admin/manage'><BankOutlined/><span>首页</span></Menu.Item>
             <SubMenu
               key="sub1"
               title={
                 <span>
-                  <MailOutlined />
-                  <span>Navigation One</span>
+                  <UserOutlined />
+                  <span>用户管理</span>
                 </span>
               }
             >
@@ -58,7 +58,7 @@ class CustomNav extends Component {
               title={
                 <span>
                   <AppstoreOutlined />
-                  <span>Navigation Two</span>
+                  <span>轮播图管理</span>
                 </span>
               }
             >
@@ -73,8 +73,8 @@ class CustomNav extends Component {
               key="sub4"
               title={
                 <span>
-                  <SettingOutlined />
-                  <span>Navigation Three</span>
+                 <ShoppingCartOutlined />
+                  <span>商品管理</span>
                 </span>
               }
             >
