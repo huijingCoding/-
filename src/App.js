@@ -3,6 +3,8 @@ import { BrowserRouter, Route, } from 'react-router-dom'
 import Login from './pages/Login/index'
 import Admin from './pages/Admin/index'
 import Manage from './pages/manage/index'
+import BannerList from './pages/banner/bannerList'
+import BannerAdd from './pages/banner/bannerAdd'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,10 @@ class App extends Component {
           return (
             <Admin>
                {/* 路由器 */}
-               <Route path='/admin/manage' component={Manage}></Route>
+              <Route path='/admin/manage' component={Manage}></Route>
+              <Route path='/admin/bannerList' component={BannerList}></Route>
+              <Route path='/admin/bannerAdd' component={BannerAdd}></Route>
+              
             </Admin>
           )
         }}></Route>
