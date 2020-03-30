@@ -84,7 +84,6 @@ class CustomNav extends Component {
             </SubMenu>
             <SubMenu
               key="sub5"
-              path='/admin/administior'
               title={
                 <span>
                 <TeamOutlined />
@@ -92,10 +91,9 @@ class CustomNav extends Component {
                 </span>
               }
             >
-              <Menu.Item key="13">Option 13</Menu.Item>
+              <Menu.Item key="13" path='/admin/administior'>管理员列表</Menu.Item>
               <Menu.Item key="14">Option 14</Menu.Item>
               <Menu.Item key="15">Option 15</Menu.Item>
-              <Menu.Item key="16">Option 16</Menu.Item>
             </SubMenu>
           </Menu>
         );

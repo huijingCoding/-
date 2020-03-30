@@ -4,6 +4,7 @@ class Admin {
         let url = '/mall/admin/login'
         return axios.post(url,payload)
     }
+  
 }
 
 export default new Admin()

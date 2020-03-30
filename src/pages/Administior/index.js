@@ -1,48 +1,66 @@
 import React, { Component } from 'react';
 import style from './index.module.less'
-import {Card,Table}from 'antd'
-
-const dataSource = [
-    {
-      key: '1',
-      name: '胡彦斌',
-      age: 32,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-  ];
-  
+import {Card,Table,Button,Modal,Input,notification}from 'antd'
+import adminapi from '../../api/admin.js'
+import { PlusOutlined } from '@ant-design/icons'; 
   const columns = [
     {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'id', //显示
+      dataIndex: '_id',//数据索引字段
+      key: '_id', //key值 
     },
     {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
+      title: '账号',
+      dataIndex: 'userName',
+      key: 'userName',
     },
   ]
 
 class Admins extends Component {
-  
+  state = {
+      dataSource:[],
+      visible:false
+}
+handleOk=async()=>{
+    let userName = this.refs.us.state.value
+    let passWord = this.refs.ps.state.value
+    let result =await adminapi.add({userName,passWord})
+    if(result.code!==0){return notification.error({description:'管理员添加失败',message:'错误',duration:2})}
+    notification.success({description:'管理员添加成功',message:'成功',duration:2})
+    this.setState({visible:false})
+    this.refreshList()
+}
+handleCancel=()=>{   
+   this.setState({visible:false})
+}
+  //刷新列表页面
+  refreshList=async()=>{
+    let result =await adminapi.List()
+      this.setState({dataSource:result.adminList})
+  }
+  //发起请求渲染界面
+  async componentDidMount(){
+      this.refreshList()
+  }
     render() {
+        let {dataSource,visible}= this.state
         return (
             <div className={style.admins}>
                <Card title='管理员列表'>
-               <Table dataSource={dataSource} columns={columns} />
+               <Button type="primary" icon={<PlusOutlined />}
+               onClick={()=>{
+                  this.setState({visible:true})
+               }}>添加</Button>
+               <Table dataSource={dataSource} columns={columns} rowKey='_id' />
                </Card>
+               <Modal
+                 title="管理员添加"
+                 visible={visible}
+                 onOk={this.handleOk}
+                 onCancel={this.handleCancel}>
+               <Input placeholder="userName" ref='us'/>
+               <Input placeholder="passWord" ref='ps'/>
+        </Modal>
             </div>
         );
     }
