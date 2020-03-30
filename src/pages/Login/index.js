@@ -1,5 +1,4 @@
-
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import api from '../../api/index.js'
 import style from './index.module.less'
 import { Form, Input, Button, Checkbox,message } from 'antd';
@@ -12,8 +11,10 @@ class Login extends Component {
   let result = await api.login({userName,passWord})
   console.log(result)
   if(result.code ==0 ){
-    message.success('登录成功，将跳转首页',2,()=>{
-      this.props.history.replace('/admin')
+    // 登录成功获取token并保存到localstorage
+    localStorage.setItem('token',result.token)
+    message.success('登录成功，将跳转首页',1,()=>{
+      this.props.history.replace('/admin/manage')
     })
   }else{
     message.error('用户名密码错误')
