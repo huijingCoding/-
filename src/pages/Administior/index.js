@@ -26,7 +26,7 @@ handleOk=async()=>{
     let passWord = this.refs.ps.state.value
     let result =await adminapi.add({userName,passWord})
     if(result.code!==0){return notification.error({description:'管理员添加失败，请重试',message:'错误',duration:2})}
-    notification.success({description:'管理员添加成功',message:'成功',duration:2})
+    notification.success({description:'管理员添加成功，恭喜你',message:'成功',duration:2})
     this.setState({visible:false})
     this.refreshList()
 }
